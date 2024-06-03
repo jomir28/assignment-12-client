@@ -19,10 +19,10 @@ const Register = () => {
         const role = form.role.value;
         let coins = 0;
         if (role === 'Worker') {
-            coins = 5;
+            coins = 10;
         }
         if (role === 'TaskCreator') {
-            coins = 10;
+            coins = 50;
         }
         console.log(coins);
         const formData = new FormData()

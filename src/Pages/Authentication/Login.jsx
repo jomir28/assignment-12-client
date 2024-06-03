@@ -1,7 +1,24 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import { useContext } from 'react'
+import { AuthContext } from '../../Providers/AuthProvider'
+import { ImSpinner9 } from "react-icons/im";
 
 const Login = () => {
+    const { signIn, loading, setLoading } = useContext(AuthContext)
+    const handleSignIn = async (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        try {
+            await signIn(email, password)
+        } catch (error) {
+            console.log(error.message);
+            setLoading(false)
+        }
+
+    }
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -12,6 +29,7 @@ const Login = () => {
                     </p>
                 </div>
                 <form
+                    onSubmit={handleSignIn}
                     className='space-y-6 ng-untouched ng-pristine ng-valid'
                 >
                     <div className='space-y-4'>
@@ -47,14 +65,17 @@ const Login = () => {
                         </div>
                     </div>
 
-                    
+
 
                     <div>
                         <button
+                            disabled={loading}
                             type='submit'
                             className='bg-rose-500 w-full rounded-md py-3 text-white'
                         >
-                           Login
+                            {
+                                loading ? <ImSpinner9 className='animate-spin m-auto' /> : 'Login'
+                            }
                         </button>
                     </div>
                 </form>
