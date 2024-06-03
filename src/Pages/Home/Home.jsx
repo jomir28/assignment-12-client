@@ -1,5 +1,6 @@
 import Features from "./Features";
 import HeroSection from "./HeroSection";
+import TestimonialSection from "./TestimonialSection";
 import WorkSection from "./WorkSection";
 
 
@@ -9,6 +10,7 @@ const Home = () => {
             <HeroSection></HeroSection>
             <Features></Features>
             <WorkSection></WorkSection>
+            <TestimonialSection></TestimonialSection>
         </div>
     );
 };
