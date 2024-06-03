@@ -30,7 +30,7 @@ const banners = [
 
 const HeroSection = () => {
     return (
-        <section id="hero" className="relative w-full h-[80vh]">
+        <section id="hero" className="relative  w-full h-[80vh]">
             <Swiper
                 spaceBetween={0}
                 pagination={{
