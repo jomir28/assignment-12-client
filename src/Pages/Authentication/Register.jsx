@@ -7,7 +7,7 @@ import { ImSpinner9 } from "react-icons/im";
 
 
 const Register = () => {
-    const { createUser, signInWithGoogle, loading, setLoading, updateUserProfile } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, loading, setLoading, updateUserProfile, } = useContext(AuthContext);
 
     const handleRegister = async (e) => {
         e.preventDefault()
@@ -44,9 +44,21 @@ const Register = () => {
             //3.Save user name and photo in firebase
 
             await updateUserProfile(name, data.data.display_url)
+            const user = {
+                email: email,
+                name: name,
+                role:role,
+                image: data.data.display_url,
+                coins:parseInt(coins)
+            }
+
+            const res = await axios.put('http://localhost:5000/user', user)
+            console.log(res.data);
 
         } catch (error) {
             console.log(error.message);
+            console.log(error);
+           
             setLoading(false)
         }
     }
@@ -55,7 +67,20 @@ const Register = () => {
     //handle google sign in
     const handleGoogleSignIn = async () => {
         try {
-            await signInWithGoogle()
+            const response = await signInWithGoogle()
+            console.log(response);
+            const user = {
+                email: response.user.email,
+                name: response.user.displayName,
+                image: response.user.photoURL,
+                role: 'Worker',
+                coins:parseInt(10)
+
+            }
+            const res = await axios.put('http://localhost:5000/user', user)
+            console.log(res.data);
+            console.log(user);
+            
 
         } catch (error) {
             console.log(error);
