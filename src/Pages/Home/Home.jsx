@@ -1,11 +1,12 @@
 import Features from "./Features";
+import HeroSection from "./HeroSection";
 import WorkSection from "./WorkSection";
 
 
 const Home = () => {
     return (
         <div>
-            <h3>This is home page</h3>
+            <HeroSection></HeroSection>
             <Features></Features>
             <WorkSection></WorkSection>
         </div>
