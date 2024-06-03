@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const Register = () => {
+    
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -11,8 +12,7 @@ const Register = () => {
                     <p className='text-sm text-gray-400'>Welcome to StayVista</p>
                 </div>
                 <form
-                    noValidate=''
-                    action=''
+                    
                     className='space-y-6 ng-untouched ng-pristine ng-valid'
                 >
                     <div className='space-y-4'>
@@ -72,11 +72,12 @@ const Register = () => {
                             />
                         </div>
                         {/* select worker / task provider */}
-                        <select className="select select-bordered w-full max-w-xs">
-                            <option disabled selected value="">Select Role</option>
+                        <select name="selectRole" required className="select select-bordered w-full max-w-xs" defaultValue="">
+                            <option disabled value="">Select Role</option>
                             <option value="Worker">Worker</option>
                             <option value="TaskCreator">Task Creator</option>
                         </select>
+
 
                     </div>
 
