@@ -3,9 +3,10 @@ import { FcGoogle } from 'react-icons/fc'
 import { useContext } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider'
 import { ImSpinner9 } from "react-icons/im";
+import axios from 'axios';
 
 const Login = () => {
-    const { signIn, loading, setLoading } = useContext(AuthContext)
+    const { signIn, loading, setLoading, signInWithGoogle } = useContext(AuthContext)
     const handleSignIn = async (e) => {
         e.preventDefault()
         const form = e.target;
@@ -19,6 +20,30 @@ const Login = () => {
         }
 
     }
+
+    const handleGoogleSignIn = async () => {
+        try {
+            const response = await signInWithGoogle()
+            console.log(response);
+            const user = {
+                email: response.user.email,
+                name: response.user.displayName,
+                image: response.user.photoURL,
+                role: 'Worker',
+                coins: parseInt(10)
+
+            }
+            const res = await axios.put('http://localhost:5000/user', user)
+            console.log(res.data);
+            console.log(user);
+
+
+        } catch (error) {
+            console.log(error);
+            setLoading(false)
+        }
+    }
+
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -91,11 +116,13 @@ const Login = () => {
                     </p>
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                 </div>
-                <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+                <button
+                    disabled={loading}
+                    onClick={handleGoogleSignIn} className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
                     <FcGoogle size={32} />
 
                     <p>Continue with Google</p>
-                </div>
+                </button>
                 <p className='px-6 text-sm text-center text-gray-400'>
                     Don&apos;t have an account yet?{' '}
                     <Link
