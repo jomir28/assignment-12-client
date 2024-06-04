@@ -6,6 +6,10 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { GoChecklist } from "react-icons/go";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { FaTasks } from "react-icons/fa";
+import { FaSackDollar } from "react-icons/fa6";
+import { MdOutlineWorkHistory } from "react-icons/md";
+import { MdAddTask } from "react-icons/md";
+import { BiTask } from "react-icons/bi";
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
@@ -119,6 +123,58 @@ const Sidebar = () => {
 
                                 <span className='mx-4 font-medium'>Withdrawals</span>
                             </NavLink> */}
+
+
+                            {/* for task creator */}
+
+                            <NavLink
+                                to='/dashboard/add-task'
+                                end
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <MdAddTask className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>Add New Tasks</span>
+                            </NavLink>
+                            <NavLink
+                                to='/dashboard/my-task'
+                                end
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <BiTask className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>My Tasks</span>
+                            </NavLink>
+                            <NavLink
+                                to='/dashboard/purchase-coin'
+                                end
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <FaSackDollar className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>Purchase Coin</span>
+                            </NavLink>
+                            <NavLink
+                                to='/dashboard/payment-history'
+                                end
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <MdOutlineWorkHistory className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>Payment history</span>
+                            </NavLink>
                            
                         </nav>
                     </div>

@@ -10,6 +10,10 @@ import WorkerTaskList from "../Pages/Worker/WorkerTaskList";
 import WorkerSubmission from "../Pages/Worker/WorkerSubmission";
 import WorkerWithdrawals from "../Pages/Worker/WorkerWithdrawals";
 import DashboardHome from "../Pages/DashboardHome";
+import AddNewTask from "../Pages/TaskCreator/AddNewTask";
+import MyTask from "../Pages/TaskCreator/MyTask";
+import PurchaseCoin from "../Pages/TaskCreator/PurchaseCoin";
+import PaymentHistory from "../Pages/TaskCreator/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +58,23 @@ export const router = createBrowserRouter([
             {
                 path:'/dashboard/withdrawals',
                 element: <WorkerWithdrawals></WorkerWithdrawals>
+            },
+            // for task creator
+            {
+                path:'/dashboard/add-task',
+                element: <AddNewTask></AddNewTask>
+            },
+            {
+                path:'/dashboard/my-task',
+                element: <MyTask></MyTask>
+            },
+            {
+                path:'/dashboard/purchase-coin',
+                element: <PurchaseCoin></PurchaseCoin>
+            },
+            {
+                path:'/dashboard/payment-history',
+                element: <PaymentHistory></PaymentHistory>
             },
         ]
     }
