@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../Providers/AuthProvider";
+import axios from "axios";
 
 const AddNewTask = () => {
     const { user } = useContext(AuthContext)
@@ -16,10 +17,22 @@ const AddNewTask = () => {
         const task_quantity = form.task_quantity.value;
         const payable_amount = form.payable_amount.value;
         const submission_info = form.submission_info.value;
-        const task_image = form.task_image.files[0];
+        const image = form.task_image.files[0];
 
+        const formData = new FormData()
+        formData.append('image', image)
 
-        console.log(task_title,task_detail,task_quantity,payable_amount,submission_info,task_image);
+        try {
+            const { data } = await axios.post(
+                `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData
+
+            )
+            console.log(data.data.display_url);
+        } catch (error) {
+            console.log(error);
+        }
+
+        console.log(task_title,task_detail,task_quantity,payable_amount,submission_info,image);
     }
 
     
