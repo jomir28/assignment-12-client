@@ -14,6 +14,8 @@ import AddNewTask from "../Pages/TaskCreator/AddNewTask";
 import MyTask from "../Pages/TaskCreator/MyTask";
 import PurchaseCoin from "../Pages/TaskCreator/PurchaseCoin";
 import PaymentHistory from "../Pages/TaskCreator/PaymentHistory";
+import ManageUsers from "../Pages/Admin/ManageUsers";
+import ManageTask from "../Pages/Admin/ManageTask";
 
 export const router = createBrowserRouter([
     {
@@ -75,6 +77,16 @@ export const router = createBrowserRouter([
             {
                 path:'/dashboard/payment-history',
                 element: <PaymentHistory></PaymentHistory>
+            },
+
+            // for admin
+            {
+                path: '/dashboard/manage-users',
+                element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: '/dashboard/manage-task',
+                element: <ManageTask></ManageTask>
             },
         ]
     }
