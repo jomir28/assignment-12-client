@@ -3,10 +3,11 @@ import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 import { BsFillHouseAddFill } from 'react-icons/bs'
 import { AiOutlineBars } from 'react-icons/ai'
-import { BsGraphUp } from 'react-icons/bs'
+import { GoChecklist } from "react-icons/go";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { FaTasks } from "react-icons/fa";
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { MdHomeWork } from 'react-icons/md'
 
 const Sidebar = () => {
     const [isActive, setActive] = useState(false)
@@ -88,9 +89,33 @@ const Sidebar = () => {
                                     }`
                                 }
                             >
-                                <BsFillHouseAddFill className='w-5 h-5' />
+                                <FaTasks className='w-5 h-5' />
 
                                 <span className='mx-4 font-medium'>Task List</span>
+                            </NavLink>
+                            <NavLink
+                                to='/dashboard/my-submission'
+                                end
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <GoChecklist className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>My Submission</span>
+                            </NavLink>
+                            <NavLink
+                                to='/dashboard/withdrawals'
+                                end
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <GiTakeMyMoney className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>Withdrawals</span>
                             </NavLink>
                            
                         </nav>
