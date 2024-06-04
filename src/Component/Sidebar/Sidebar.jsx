@@ -15,12 +15,17 @@ import { BiTask } from "react-icons/bi";
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import useRole from '../../hooks/useRole'
+import MenuItem from './Menu/MenuItem'
+import AdminMenu from './Menu/AdminMenu'
+import WorkerMenu from './Menu/WorkerMenu'
+import TaskCreator from './Menu/TaskCreator'
 
 const Sidebar = () => {
     const [isActive, setActive] = useState(true)
+
     const [role, isLoading] = useRole()
     if (isLoading) {
-        return<p>loading</p>
+        return <p>loading</p>
     }
     console.log(role);
 
@@ -93,124 +98,29 @@ const Sidebar = () => {
 
                                 <span className='mx-4 font-medium'>Home</span>
                             </NavLink>
-                            {/* Statistics */}
+
+                            {
+                              role==='Worker' && <WorkerMenu></WorkerMenu>
+                            }
+
                             
-                            {/* <NavLink
-                                to='/dashboard/task-list'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <FaTasks className='w-5 h-5' />
-
-                                <span className='mx-4 font-medium'>Task List</span>
-                            </NavLink>
-                            <NavLink
-                                to='/dashboard/my-submission'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <GoChecklist className='w-5 h-5' />
-
-                                <span className='mx-4 font-medium'>My Submission</span>
-                            </NavLink>
-                            <NavLink
-                                to='/dashboard/withdrawals'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <GiTakeMyMoney className='w-5 h-5' />
-
-                                <span className='mx-4 font-medium'>Withdrawals</span>
-                            </NavLink> */}
-
 
                             {/* for task creator */}
 
-                            {/* <NavLink
-                                to='/dashboard/add-task'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <MdAddTask className='w-5 h-5' />
-
-                                <span className='mx-4 font-medium'>Add New Tasks</span>
-                            </NavLink>
-                            <NavLink
-                                to='/dashboard/my-task'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <BiTask className='w-5 h-5' />
-
-                                <span className='mx-4 font-medium'>My Tasks</span>
-                            </NavLink>
-                            <NavLink
-                                to='/dashboard/purchase-coin'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <FaSackDollar className='w-5 h-5' />
-
-                                <span className='mx-4 font-medium'>Purchase Coin</span>
-                            </NavLink>
-                            <NavLink
-                                to='/dashboard/payment-history'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <MdOutlineWorkHistory className='w-5 h-5' />
-
-                                <span className='mx-4 font-medium'>Payment history</span>
-                            </NavLink> */}
+                            
+                            {
+                                role ==='Task Creator' && <TaskCreator></TaskCreator>
+                            }
+                            
+                           
 
                             {/* for admin */}
-                            <NavLink
-                                to='/dashboard/manage-users'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <FaUsersCog className='w-5 h-5' />
+                            {
+                                role === 'admin' && <AdminMenu></AdminMenu>
+                            }
 
-                                <span className='mx-4 font-medium'>Manage Users</span>
-                            </NavLink>
 
-                            <NavLink
-                                to='/dashboard/manage-task'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                    }`
-                                }
-                            >
-                                <RiFileEditFill className='w-5 h-5' />
 
-                                <span className='mx-4 font-medium'>Manage Task</span>
-                            </NavLink>
-                           
                         </nav>
                     </div>
                 </div>

@@ -21,7 +21,7 @@ const Register = () => {
         if (role === 'Worker') {
             coins = 10;
         }
-        if (role === 'TaskCreator') {
+        if (role === 'Task Creator') {
             coins = 50;
         }
         console.log(coins);
@@ -162,7 +162,7 @@ const Register = () => {
                         <select name="role" required className="select select-bordered w-full max-w-xs" defaultValue="">
                             <option disabled value="">Select Role</option>
                             <option value="Worker">Worker</option>
-                            <option value="TaskCreator">Task Creator</option>
+                            <option value="Task Creator">Task Creator</option>
                         </select>
 
 
