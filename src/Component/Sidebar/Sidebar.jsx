@@ -83,7 +83,7 @@ const Sidebar = () => {
                             </NavLink>
                             {/* Statistics */}
                             
-                            <NavLink
+                            {/* <NavLink
                                 to='/dashboard/task-list'
                                 end
                                 className={({ isActive }) =>
@@ -118,7 +118,7 @@ const Sidebar = () => {
                                 <GiTakeMyMoney className='w-5 h-5' />
 
                                 <span className='mx-4 font-medium'>Withdrawals</span>
-                            </NavLink>
+                            </NavLink> */}
                            
                         </nav>
                     </div>
