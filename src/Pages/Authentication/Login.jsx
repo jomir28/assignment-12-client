@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { useContext } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider'
@@ -7,6 +7,8 @@ import axios from 'axios';
 
 const Login = () => {
     const { signIn, loading, setLoading, signInWithGoogle } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const from = location?.state || '/'
     const handleSignIn = async (e) => {
         e.preventDefault()
         const form = e.target;
@@ -14,6 +16,7 @@ const Login = () => {
         const password = form.password.value;
         try {
             await signIn(email, password)
+            navigate(from,{replace:true})
         } catch (error) {
             console.log(error.message);
             setLoading(false)
@@ -25,6 +28,7 @@ const Login = () => {
         try {
             const response = await signInWithGoogle()
             console.log(response);
+            navigate(from, { replace: true })
             const user = {
                 email: response.user.email,
                 name: response.user.displayName,
