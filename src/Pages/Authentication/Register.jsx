@@ -7,7 +7,7 @@ import { ImSpinner9 } from "react-icons/im";
 
 
 const Register = () => {
-    const { createUser, signInWithGoogle, loading,setUser, setLoading, updateUserProfile, } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, loading, setUser, setLoading, updateUserProfile, } = useContext(AuthContext);
 
     const handleRegister = async (e) => {
         e.preventDefault()
@@ -48,9 +48,9 @@ const Register = () => {
             const user = {
                 email: email,
                 name: name,
-                role:role,
+                role: role,
                 image: data.data.display_url,
-                coins:parseInt(coins)
+                coins: parseInt(coins)
             }
 
             const res = await axios.put('http://localhost:5000/user', user)
@@ -59,7 +59,7 @@ const Register = () => {
         } catch (error) {
             console.log(error.message);
             console.log(error);
-           
+
             setLoading(false)
         }
     }
@@ -75,13 +75,13 @@ const Register = () => {
                 name: response.user.displayName,
                 image: response.user.photoURL,
                 role: 'Worker',
-                coins:parseInt(10)
+                coins: parseInt(10)
 
             }
             const res = await axios.put('http://localhost:5000/user', user)
             console.log(res.data);
             console.log(user);
-            
+
 
         } catch (error) {
             console.log(error);
