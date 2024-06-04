@@ -14,9 +14,15 @@ import { MdAddTask } from "react-icons/md";
 import { BiTask } from "react-icons/bi";
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import useRole from '../../hooks/useRole'
 
 const Sidebar = () => {
     const [isActive, setActive] = useState(true)
+    const [role, isLoading] = useRole()
+    if (isLoading) {
+        return<p>loading</p>
+    }
+    console.log(role);
 
     // Sidebar Responsive Handler
     const handleToggle = () => {
