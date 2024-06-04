@@ -6,10 +6,10 @@ import Home from "../Pages/Home/Home";
 import Profile from "../Component/Profile";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../Layout/DashboardLayout";
-import WorkerHome from "../Pages/Worker/WorkerHome";
 import WorkerTaskList from "../Pages/Worker/WorkerTaskList";
 import WorkerSubmission from "../Pages/Worker/WorkerSubmission";
 import WorkerWithdrawals from "../Pages/Worker/WorkerWithdrawals";
+import DashboardHome from "../Pages/DashboardHome";
 
 export const router = createBrowserRouter([
     {
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <WorkerHome></WorkerHome>
+                element: <DashboardHome></DashboardHome>
             },
             
             {

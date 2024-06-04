@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
-    const [isActive, setActive] = useState(false)
+    const [isActive, setActive] = useState(true)
 
     // Sidebar Responsive Handler
     const handleToggle = () => {
@@ -23,13 +23,14 @@ const Sidebar = () => {
                 <div>
                     <div className='block cursor-pointer p-4 font-bold'>
                         <Link to='/'>
-                            <img
+                            Micro Earn
+                            {/* <img
                                 // className='hidden md:block'
                                 src='https://i.ibb.co/4ZXzmq5/logo.png'
                                 alt='logo'
                                 width='100'
                                 height='100'
-                            />
+                            /> */}
                         </Link>
                     </div>
                 </div>
@@ -68,7 +69,6 @@ const Sidebar = () => {
 
                         {/*  Menu Items */}
                         <nav>
-                            {/* Statistics */}
                             <NavLink
                                 to='/dashboard'
                                 end
@@ -81,6 +81,8 @@ const Sidebar = () => {
 
                                 <span className='mx-4 font-medium'>Home</span>
                             </NavLink>
+                            {/* Statistics */}
+                            
                             <NavLink
                                 to='/dashboard/task-list'
                                 end
