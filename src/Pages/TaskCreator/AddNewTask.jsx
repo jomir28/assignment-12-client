@@ -3,9 +3,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
+import useUser from "../../hooks/useUser";
 
 const AddNewTask = () => {
     const { user } = useContext(AuthContext)
+    const [data, isLoading] = useUser()
+    console.log(data?.coins);
     
     const [deadline, setStartDate] = useState(new Date());
 
@@ -16,23 +19,44 @@ const AddNewTask = () => {
         const task_detail = form.task_detail.value;
         const task_quantity = form.task_quantity.value;
         const payable_amount = form.payable_amount.value;
+        if (task_quantity * payable_amount > data?.coins) {
+            return alert('You have not sufficient coin.purchase more coin for post')
+        }
         const submission_info = form.submission_info.value;
-        const image = form.task_image.files[0];
+        const task_image = form.task_image.files[0];
 
         const formData = new FormData()
-        formData.append('image', image)
+        formData.append('image', task_image)
 
         try {
             const { data } = await axios.post(
                 `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData
 
             )
+            
+            const task = {
+                task_title,
+                task_detail,
+                task_quantity,
+                payable_amount,
+                submission_info,
+                task_image,
+                deadline,
+                user: {
+                    name: user?.displayName,
+                    email: user?.email,
+                    photo_url: user?.photoURL,
+                    post_time:Date.now()
+                }
+            }
+            console.log(task);
+
             console.log(data.data.display_url);
         } catch (error) {
             console.log(error);
         }
 
-        console.log(task_title,task_detail,task_quantity,payable_amount,submission_info,image);
+        console.log(task_title,task_detail,task_quantity,payable_amount,submission_info,task_image);
     }
 
     

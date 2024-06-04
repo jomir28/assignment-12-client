@@ -14,7 +14,7 @@ const DashboardLayout = () => {
     if (loading) {
         return<Loading></Loading>
     }
-    console.log(data);
+    // console.log(data);
     return (
         <div className="md:flex">
 
