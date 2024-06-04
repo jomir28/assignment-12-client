@@ -22,7 +22,7 @@ const DashboardLayout = () => {
                 <Sidebar></Sidebar>
             </div>
 
-            <div className="flex-1 md:ml-[280px] md:pt-4">
+            <div className="flex-1 md:ml-64 md:pt-4">
 
                 <div className="h-20 border flex gap-10 pr-5 items-center justify-end">
                     <div>
@@ -36,7 +36,7 @@ const DashboardLayout = () => {
                         </div>
                         <div className="flex gap-2">
                             <p>{data?.role}</p>
-                            <p>Md Rakibul Islam</p>
+                            <p>{data?.name}</p>
                         </div>
                     </div>
                     <div className="flex flex-col items-center">

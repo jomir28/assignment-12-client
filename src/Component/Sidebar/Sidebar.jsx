@@ -12,6 +12,7 @@ import { AiOutlineBars } from 'react-icons/ai'
 // import { MdOutlineWorkHistory } from "react-icons/md";
 // import { MdAddTask } from "react-icons/md";
 // import { BiTask } from "react-icons/bi";
+import microEarn from '../../assets/icons/earning.png'
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import useRole from '../../hooks/useRole'
@@ -38,16 +39,17 @@ const Sidebar = () => {
             {/* Small Screen Navbar */}
             <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
                 <div>
-                    <div className='block cursor-pointer p-4 font-bold'>
-                        <Link to='/'>
-                            Micro Earn
-                            {/* <img
+                    <div className='block cursor-pointer p-4 font-medium font-bold'>
+                        <Link className='flex items-center gap-1' to='/'>
+                            
+                            <img
                                 // className='hidden md:block'
-                                src='https://i.ibb.co/4ZXzmq5/logo.png'
+                                src={microEarn}
                                 alt='logo'
-                                width='100'
-                                height='100'
-                            /> */}
+                                width='24'
+                                height='24'
+                            />
+                            Micro Earn
                         </Link>
                     </div>
                 </div>
@@ -67,15 +69,17 @@ const Sidebar = () => {
             >
                 <div>
                     <div>
-                        <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
-                            <Link to='/'>
+                        <div className='w-full hidden md:flex font-medium px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-50 mx-auto'>
+                            <Link className='flex items-center gap-1' to='/'>
                                 <img
-                                    // className='hidden md:block'
-                                    src='https://i.ibb.co/4ZXzmq5/logo.png'
+                                    className='hidden md:block'
+                                    src={microEarn}
                                     alt='logo'
-                                    width='100'
-                                    height='100'
+                                    width='24'
+                                    height='24'
+                                    
                                 />
+                                Micro Earn
                             </Link>
                         </div>
                     </div>
