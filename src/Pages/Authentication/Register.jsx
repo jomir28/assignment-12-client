@@ -7,7 +7,7 @@ import { ImSpinner9 } from "react-icons/im";
 
 
 const Register = () => {
-    const { createUser, signInWithGoogle, loading, setLoading, updateUserProfile, } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, loading,setUser, setLoading, updateUserProfile, } = useContext(AuthContext);
 
     const handleRegister = async (e) => {
         e.preventDefault()
@@ -44,6 +44,7 @@ const Register = () => {
             //3.Save user name and photo in firebase
 
             await updateUserProfile(name, data.data.display_url)
+            setUser({ ...result?.user, photoURL: data.data.display_url, displayName: name })
             const user = {
                 email: email,
                 name: name,
