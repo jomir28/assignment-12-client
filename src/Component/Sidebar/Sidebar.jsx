@@ -3,19 +3,19 @@ import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 import { BsFillHouseAddFill } from 'react-icons/bs'
 import { AiOutlineBars } from 'react-icons/ai'
-import { RiFileEditFill } from "react-icons/ri";
-import { GoChecklist } from "react-icons/go";
-import { GiTakeMyMoney } from "react-icons/gi";
-import { FaTasks } from "react-icons/fa";
-import { FaUsersCog } from "react-icons/fa";
-import { FaSackDollar } from "react-icons/fa6";
-import { MdOutlineWorkHistory } from "react-icons/md";
-import { MdAddTask } from "react-icons/md";
-import { BiTask } from "react-icons/bi";
+// import { RiFileEditFill } from "react-icons/ri";
+// import { GoChecklist } from "react-icons/go";
+// import { GiTakeMyMoney } from "react-icons/gi";
+// import { FaTasks } from "react-icons/fa";
+// import { FaUsersCog } from "react-icons/fa";
+// import { FaSackDollar } from "react-icons/fa6";
+// import { MdOutlineWorkHistory } from "react-icons/md";
+// import { MdAddTask } from "react-icons/md";
+// import { BiTask } from "react-icons/bi";
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import useRole from '../../hooks/useRole'
-import MenuItem from './Menu/MenuItem'
+// import MenuItem from './Menu/MenuItem'
 import AdminMenu from './Menu/AdminMenu'
 import WorkerMenu from './Menu/WorkerMenu'
 import TaskCreator from './Menu/TaskCreator'
@@ -27,7 +27,7 @@ const Sidebar = () => {
     if (isLoading) {
         return <p>loading</p>
     }
-    console.log(role);
+    // console.log(role);
 
     // Sidebar Responsive Handler
     const handleToggle = () => {

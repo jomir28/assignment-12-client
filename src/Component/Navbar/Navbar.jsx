@@ -2,10 +2,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 import { RiCoinsFill } from "react-icons/ri";
+import Loading from "../Loading";
 
 
 const Navbar = () => {
-    const { logOut,user } = useContext(AuthContext)
+    const { logOut, user, loading } = useContext(AuthContext)
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     const handleLogout = async() => {
         await logOut()
