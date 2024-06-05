@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { FiEdit } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 const MyTask = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useContext(AuthContext)
+    const queryClient = useQueryClient()
     
 
     // const [data, isLoading, refetch] = useUser()
@@ -53,6 +54,7 @@ const MyTask = () => {
                     const increaseResult = await axiosSecure.patch(`/increase-coin/${user?.email}`, { value: task_quantity * payable_amount })
                     console.log(increaseResult);
                     refetch()
+                    queryClient.invalidateQueries(['data'])
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your file has been deleted.",
