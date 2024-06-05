@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { FiEdit } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Loading from "../../Component/Loading";
 import NoTask from "./NoTask";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
 
 
 const MyTask = () => {
@@ -25,6 +27,32 @@ const MyTask = () => {
 
     if (tableData.length === 0) {
         return <NoTask></NoTask>
+    }
+
+
+    const handleDeleteTask = (id) => {
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                const result = await axiosSecure.delete(`/all-task/${id}`)
+                refetch()
+                console.log(result);
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+       
     }
 
 
@@ -84,10 +112,16 @@ const MyTask = () => {
                                             {data.payable_amount} coin
                                         </td>
                                         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                            Delete
+                                            
+                                            <button onClick={()=>handleDeleteTask(data._id)} className="btn btn-circle hover:text-rose-500 transition-all duration-200">
+                                                <MdDelete className="text-xl " />
+                                            </button>
                                         </td>
                                         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                            <button>Update</button>
+                                            <button className="btn btn-circle hover:text-green-500 transition-all duration-200">
+                                                <FiEdit className="text-xl " />
+                                            </button>
+                                            
                                         </td>
 
                                     </tr>)
