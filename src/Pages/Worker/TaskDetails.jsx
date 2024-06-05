@@ -1,14 +1,61 @@
 
-import { Link, useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import {  useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const TaskDetails = () => {
+    const { user } = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
+
     const data = useLoaderData()
-    console.log(data);
+    let current_date = Date.now();
+    
+//    let currentDate = new Date(currentTimeMillis).toLocaleDateString();
+//     console.log(currentDate);
+    const handleSubmitTask = async(e) => {
+        e.preventDefault()
+        const form = e.target;
+        const submission_Details = form.submission_Details.value;
+        console.log(submission_Details);
+        const submissionData = {
+            task_id:data._id,
+            task_title:data.task_title,
+            task_detail:data.task_detail,
+            task_img_url: data.task_image,
+            payable_amount: data.payable_amount,
+            task_quantity:data.task_quantity,
+            worker_email:user?.email,
+            worker_name:user?.displayName,
+            submission_details: submission_Details,
+            creator_name:data.user.name,
+            creator_email: data.user.email,
+            creator_image: data.user.photo_url,
+            current_date,
+            status:'pending'
+        }
+
+        console.log(submissionData);
+        const result = await axiosSecure.post('/worker-submission', submissionData)
+        console.log(result.data);
+        if (result.data.insertedId) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+    }
+
     return (
         <div className="max-w-5xl border md:mx-auto overflow-hidden font-raleway p-2 mx-4 my-14 bg-white rounded-lg shadow-md mt-5">
             <img className=" w-full md:h-[500px]" src={data.task_image} alt="Article" />
 
-            <form>
+            <form onSubmit={handleSubmitTask}>
                 <div className="p-6">
                     <div className="space-y-1 ">
                         <p className="text-lg font-medium text-blue-600 uppercase dark:text-blue-400">{data.task_title}</p>
@@ -21,7 +68,7 @@ const TaskDetails = () => {
 
 
                     <div className="mt-5 h-36">
-                        <textarea required className="textarea border border-rose-400 border-opacity-40 bg-pink-50 w-full h-full textarea-bordered" placeholder="Submission Details"></textarea>
+                        <textarea name="submission_Details" required className="textarea border border-rose-400 border-opacity-40 bg-pink-50 w-full h-full textarea-bordered" placeholder="Submission Details"></textarea>
                     </div>
 
 
