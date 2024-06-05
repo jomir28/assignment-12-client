@@ -6,6 +6,7 @@ import axios from 'axios';
 const useUser = () => {
     const { user, loading } = useContext(AuthContext)
 
+
     //fetch user info using logged in user
     // TODO:Do it using axios secure
     const { data, isLoading,refetch } = useQuery({
