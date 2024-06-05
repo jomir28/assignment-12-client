@@ -10,6 +10,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 const AddNewTask = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
+    // eslint-disable-next-line no-unused-vars
     const [data, isLoading,refetch] = useUser()
     // console.log(data?.coins);
 
@@ -65,7 +66,7 @@ const AddNewTask = () => {
             if (result.data.insertedId) {
 
                 // const result = await axios.patch(`http://localhost:5000/update-coin/${user?.email}`, { value: task_quantity * payable_amount })
-                const result = await axiosSecure.patch(`/update-coin/${user?.email}`, { value: task_quantity * payable_amount })
+                const result = await axiosSecure.patch(`/decrease-coin/${user?.email}`, { value: task_quantity * payable_amount })
                 console.log(result);
                 Swal.fire({
                     position: "top-end",

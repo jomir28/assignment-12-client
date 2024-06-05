@@ -7,11 +7,17 @@ import NoTask from "./NoTask";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+// import useUser from "../../hooks/useUser";
 
 
 const MyTask = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useContext(AuthContext)
+    
+
+    // const [data, isLoading, refetch] = useUser()
+
     const { data: tableData, isLoading, refetch } = useQuery({
         queryKey: ['my-task', user?.email],
         queryFn: async () => {
@@ -30,8 +36,8 @@ const MyTask = () => {
     }
 
 
-    const handleDeleteTask = (id) => {
-        console.log(id);
+    const handleDeleteTask = (id, task_quantity, payable_amount) => {
+        console.log(id, task_quantity, payable_amount);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -40,20 +46,26 @@ const MyTask = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then(async(result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
                 const result = await axiosSecure.delete(`/all-task/${id}`)
-                refetch()
-                console.log(result);
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
+                if (result.data.deletedCount > 0) {
+                    const increaseResult = await axiosSecure.patch(`/increase-coin/${user?.email}`, { value: task_quantity * payable_amount })
+                    console.log(increaseResult);
+                    refetch()
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+
             }
         });
-       
+
     }
+
+   
 
 
 
@@ -112,16 +124,16 @@ const MyTask = () => {
                                             {data.payable_amount} coin
                                         </td>
                                         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                            
-                                            <button onClick={()=>handleDeleteTask(data._id)} className="btn btn-circle hover:text-rose-500 transition-all duration-200">
+
+                                            <button onClick={() => handleDeleteTask(data._id, data.task_quantity, data.payable_amount)} className="btn btn-circle hover:text-rose-500 transition-all duration-200">
                                                 <MdDelete className="text-xl " />
                                             </button>
                                         </td>
                                         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                            <button className="btn btn-circle hover:text-green-500 transition-all duration-200">
+                                            <Link to={`/dashboard/update-task/${data._id}`} className="btn btn-circle hover:text-green-500 transition-all duration-200">
                                                 <FiEdit className="text-xl " />
-                                            </button>
-                                            
+                                            </Link>
+
                                         </td>
 
                                     </tr>)

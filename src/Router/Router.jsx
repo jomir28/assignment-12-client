@@ -16,6 +16,7 @@ import PurchaseCoin from "../Pages/TaskCreator/PurchaseCoin";
 import PaymentHistory from "../Pages/TaskCreator/PaymentHistory";
 import ManageUsers from "../Pages/Admin/ManageUsers";
 import ManageTask from "../Pages/Admin/ManageTask";
+import UpdateTask from "../Pages/TaskCreator/UpdateTask";
 
 export const router = createBrowserRouter([
     {
@@ -88,6 +89,11 @@ export const router = createBrowserRouter([
                 path: '/dashboard/manage-task',
                 element: <ManageTask></ManageTask>
             },
+            {
+                path: '/dashboard/update-task/:id',
+                element: <UpdateTask></UpdateTask>,
+                loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
+            }
         ]
     }
     
