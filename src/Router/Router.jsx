@@ -17,6 +17,7 @@ import PaymentHistory from "../Pages/TaskCreator/PaymentHistory";
 import ManageUsers from "../Pages/Admin/ManageUsers";
 import ManageTask from "../Pages/Admin/ManageTask";
 import UpdateTask from "../Pages/TaskCreator/UpdateTask";
+import TaskDetails from "../Pages/Worker/TaskDetails";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,11 @@ export const router = createBrowserRouter([
             {
                 path:'/dashboard/withdrawals',
                 element: <WorkerWithdrawals></WorkerWithdrawals>
+            },
+            {
+                path: '/dashboard/task-details/:id',
+                element: <TaskDetails></TaskDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
             },
             // for task creator
             {
