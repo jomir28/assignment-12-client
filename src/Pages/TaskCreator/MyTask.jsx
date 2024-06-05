@@ -4,14 +4,17 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Loading from "../../Component/Loading";
 import NoTask from "./NoTask";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const MyTask = () => {
+    const axiosSecure = useAxiosSecure()
     const { user } = useContext(AuthContext)
     const { data: tableData, isLoading, refetch } = useQuery({
         queryKey: ['my-task', user?.email],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/all-task/${user?.email}`)
+            // const { data } = await axios.get(`http://localhost:5000/all-task/${user?.email}`)
+            const { data } = await axiosSecure(`/all-task/${user?.email}`)
             return data;
         }
     })

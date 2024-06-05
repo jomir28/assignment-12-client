@@ -5,9 +5,11 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import useUser from "../../hooks/useUser";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddNewTask = () => {
     const { user } = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
     const [data, isLoading,refetch] = useUser()
     // console.log(data?.coins);
 
@@ -58,10 +60,12 @@ const AddNewTask = () => {
                     post_time: Date.now()
                 }
             }
-            const result = await axios.post('http://localhost:5000/add-task', task)
+            // const result = await axios.post('http://localhost:5000/add-task', task)
+            const result = await axiosSecure.post('/add-task',task)
             if (result.data.insertedId) {
 
-                const result = await axios.patch(`http://localhost:5000/update-coin/${user?.email}`,{value:task_quantity * payable_amount})
+                // const result = await axios.patch(`http://localhost:5000/update-coin/${user?.email}`, { value: task_quantity * payable_amount })
+                const result = await axiosSecure.patch(`/update-coin/${user?.email}`, { value: task_quantity * payable_amount })
                 console.log(result);
                 Swal.fire({
                     position: "top-end",
