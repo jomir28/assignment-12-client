@@ -79,6 +79,11 @@ export const router = createBrowserRouter([
                 path:'/dashboard/payment-history',
                 element: <PaymentHistory></PaymentHistory>
             },
+            {
+                path: '/dashboard/update-task/:id',
+                element: <UpdateTask></UpdateTask>,
+                loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
+            },
 
             // for admin
             {
@@ -89,11 +94,7 @@ export const router = createBrowserRouter([
                 path: '/dashboard/manage-task',
                 element: <ManageTask></ManageTask>
             },
-            {
-                path: '/dashboard/update-task/:id',
-                element: <UpdateTask></UpdateTask>,
-                loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
-            }
+            
         ]
     }
     
