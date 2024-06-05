@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Loading from "../../Component/Loading";
+import NoTask from "./NoTask";
 
 
 const MyTask = () => {
@@ -17,6 +18,10 @@ const MyTask = () => {
 
     if (isLoading) {
         return <Loading></Loading>
+    }
+
+    if (tableData.length === 0) {
+        return <NoTask></NoTask>
     }
 
 
@@ -73,7 +78,7 @@ const MyTask = () => {
                                             {data.task_quantity}
                                         </td>
                                         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                            {data.payable_amount}
+                                            {data.payable_amount} coin
                                         </td>
                                         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                                             Delete
