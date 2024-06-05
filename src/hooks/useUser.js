@@ -8,7 +8,7 @@ const useUser = () => {
 
     //fetch user info using logged in user
     // TODO:Do it using axios secure
-    const { data, isLoading } = useQuery({
+    const { data, isLoading,refetch } = useQuery({
         queryKey: ['data', user?.email],
         enabled: !loading && !!user?.email,
         queryFn: async () => {
@@ -18,7 +18,7 @@ const useUser = () => {
     })
 
 
-    return [data, isLoading]
+    return [data, isLoading, refetch]
 };
 
 export default useUser;
