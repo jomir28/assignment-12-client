@@ -1,10 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateTask = () => {
-    const [deadline, setStartDate] = useState(new Date());
     const data = useLoaderData()
     console.log(data);
 
