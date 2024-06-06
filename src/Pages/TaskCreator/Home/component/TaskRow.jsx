@@ -2,11 +2,12 @@
 import Swal from "sweetalert2";
 import SubmissionModal from "./SubmissionModal";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useQueryClient } from "@tanstack/react-query";
 
 const TaskRow = ({ task, refetch }) => {
     const axiosSecure = useAxiosSecure()
 
-
+    const queryClient = useQueryClient()
     const modalId = `modal_${task._id}`;
 
    
@@ -31,6 +32,7 @@ const TaskRow = ({ task, refetch }) => {
                         icon: "success"
                     });
                     refetch()
+                    queryClient.invalidateQueries(['task-creator-home'])
                 }
                 
             }
@@ -62,6 +64,7 @@ const TaskRow = ({ task, refetch }) => {
                         icon: "success"
                     });
                     refetch()
+                    queryClient.invalidateQueries(['task-creator-home'])
                 }
             }
         });

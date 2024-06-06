@@ -8,6 +8,7 @@ import TaskRow from "./TaskRow";
 const AllTask = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useContext(AuthContext)
+    
 
 
     const { data: allTaskSubmission, isLoading,refetch } = useQuery({
@@ -23,7 +24,6 @@ const AllTask = () => {
         return <Loading></Loading>
     }
 
-    console.log(allTaskSubmission);
 
     return (
         <div className="overflow-x-auto">
