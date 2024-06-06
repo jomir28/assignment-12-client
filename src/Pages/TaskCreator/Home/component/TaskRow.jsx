@@ -9,10 +9,12 @@ const TaskRow = ({ task, refetch }) => {
 
     const modalId = `modal_${task._id}`;
 
+   
+
     const handleStatusReject = (id) => {
         Swal.fire({
             title: "Are you sure?",
-            // text: "You won't be able to revert this!",
+            text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -21,13 +23,46 @@ const TaskRow = ({ task, refetch }) => {
         }).then(async(result) => {
             if (result.isConfirmed) {
                 const data = await axiosSecure.patch(`/task/reject/${id}`, { status:'Reject'})
-                console.log(data);
-                // Swal.fire({
-                //     title: "Rejected!",
-                //     text: "Rejected Successfully.",
-                //     icon: "success"
-                // });
-                refetch()
+                console.log();
+                if (data.data.modifiedCount) {
+                    Swal.fire({
+                        title: "Rejected!",
+                        text: "Rejected Successfully.",
+                        icon: "success"
+                    });
+                    refetch()
+                }
+                
+            }
+        });
+    }
+
+
+    const handleStatusUpdate = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Approve it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const data = await axiosSecure.patch(`/task/approve/${id}`, { status: 'Approve' })
+                console.log(data.data.modifiedCount);
+                if (data.data.modifiedCount) {
+                   
+                    const data = await axiosSecure.patch(`/update-user-coin/${task.worker_email}`, { coins: task.payable_amount })
+                    console.log(data.data,'form coins update');
+
+                    Swal.fire({
+                        title: "Rejected!",
+                        text: "Rejected Successfully.",
+                        icon: "success"
+                    });
+                    refetch()
+                }
             }
         });
     }
@@ -58,7 +93,7 @@ const TaskRow = ({ task, refetch }) => {
             </td>
             <td className="flex gap-2">
                 <button onClick={()=>handleStatusReject(task._id)} className="py-2 px-4 rounded-lg bg-red-400 font-medium">Reject</button>
-                <button className="py-2 px-4 rounded-lg bg-green-400 font-medium">Approved</button>
+                <button onClick={()=>handleStatusUpdate(task._id)} className="py-2 px-4 rounded-lg bg-green-400 font-medium">Approved</button>
             </td>
             
             
