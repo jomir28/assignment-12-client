@@ -67,8 +67,7 @@ const UserDataRow = ({ user, refetch }) => {
     }
 
     return (
-        <tr key={user._id}>
-
+        <tr>
             <th className="flex items-center gap-3">
                 <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">

@@ -1,9 +1,13 @@
+import useRole from "../hooks/useRole";
+import TaskCreatorHome from "./TaskCreator/Home/TaskCreatorHome";
 
 
 const DashboardHome = () => {
+    const [role] = useRole()
+    console.log(role);
     return (
-        <div>
-            <h3>This is Dashboard home</h3>
+        <div className="p-2">
+           {role === 'Task Creator' && <TaskCreatorHome></TaskCreatorHome>}
         </div>
     );
 };
