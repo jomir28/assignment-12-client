@@ -54,8 +54,8 @@ const WorkerSubmission = () => {
                             <td>
                                {data.task_title}
                             </td>
-                            <td title={data.task_detail}> {data.task_detail.length > 50 ? data.task_detail.slice(0, 50) + '...' : data.task_detail}</td>
-                            <td title={data.submission_details}> {data.submission_details.length > 50 ? data.submission_details.slice(0,50) + '...' : data.submission_details }</td>
+                            <td title={data.task_detail}> {data.task_detail.length > 50 ? data.task_detail.slice(0, 20) + '....' : data.task_detail}</td>
+                            <td title={data.submission_details}> {data.submission_details.length > 20 ? data.submission_details.slice(0,20) + '....' : data.submission_details }</td>
                             <th>
                                 {data.status}
                             </th>

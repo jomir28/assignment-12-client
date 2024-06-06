@@ -20,13 +20,14 @@ import useRole from '../../hooks/useRole'
 import AdminMenu from './Menu/AdminMenu'
 import WorkerMenu from './Menu/WorkerMenu'
 import TaskCreator from './Menu/TaskCreator'
+import Loading from '../Loading'
 
 const Sidebar = () => {
     const [isActive, setActive] = useState(true)
 
     const [role, isLoading] = useRole()
     if (isLoading) {
-        return <p>loading</p>
+        return<Loading></Loading>
     }
     // console.log(role);
 
