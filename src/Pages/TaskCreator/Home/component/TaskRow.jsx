@@ -1,9 +1,36 @@
 /* eslint-disable react/prop-types */
+import Swal from "sweetalert2";
 import SubmissionModal from "./SubmissionModal";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
-const TaskRow = ({ task }) => {
+const TaskRow = ({ task, refetch }) => {
+    const axiosSecure = useAxiosSecure()
+
 
     const modalId = `modal_${task._id}`;
+
+    const handleStatusReject = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            // text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Reject it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                const data = await axiosSecure.patch(`/task/reject/${id}`, { status:'Reject'})
+                console.log(data);
+                // Swal.fire({
+                //     title: "Rejected!",
+                //     text: "Rejected Successfully.",
+                //     icon: "success"
+                // });
+                refetch()
+            }
+        });
+    }
     
 
     return (
@@ -30,7 +57,7 @@ const TaskRow = ({ task }) => {
                 <SubmissionModal task={task} modalId={modalId}></SubmissionModal>
             </td>
             <td className="flex gap-2">
-                <button className="py-2 px-4 rounded-lg bg-red-400 font-medium">Reject</button>
+                <button onClick={()=>handleStatusReject(task._id)} className="py-2 px-4 rounded-lg bg-red-400 font-medium">Reject</button>
                 <button className="py-2 px-4 rounded-lg bg-green-400 font-medium">Approved</button>
             </td>
             

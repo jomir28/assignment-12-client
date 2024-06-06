@@ -10,7 +10,7 @@ const AllTask = () => {
     const { user } = useContext(AuthContext)
 
 
-    const { data: allTaskSubmission, isLoading } = useQuery({
+    const { data: allTaskSubmission, isLoading,refetch } = useQuery({
         queryKey: ['all-sub-task', user?.email],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/task-submission/${user?.email}`)
@@ -41,7 +41,7 @@ const AllTask = () => {
                 </thead>
                 <tbody>
                     {
-                        allTaskSubmission.map(task =><TaskRow key={task._id} task={task} ></TaskRow>)
+                        allTaskSubmission.map(task => <TaskRow key={task._id} task={task} refetch={refetch}></TaskRow>)
                     }
                 </tbody>
 
