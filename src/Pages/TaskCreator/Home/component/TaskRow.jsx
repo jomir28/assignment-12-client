@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
 import SubmissionModal from "./SubmissionModal";
 
 const TaskRow = ({ task }) => {
+
     const modalId = `modal_${task._id}`;
+    
 
     return (
         <tr>
@@ -23,9 +26,15 @@ const TaskRow = ({ task }) => {
             </td>
             <td>{task.payable_amount} coin</td>
             <td>
-                <button onClick={() => document.getElementById(modalId).showModal()}><span className="px-2 py-1 bg-indigo-200 rounded-xl font-medium">View Submission</span></button>
+                <button className="underline" onClick={() => document.getElementById(modalId).showModal()}>View Submission</button>
+                <SubmissionModal task={task} modalId={modalId}></SubmissionModal>
             </td>
-            <SubmissionModal task={task} modalId={modalId}></SubmissionModal>
+            <td className="flex gap-2">
+                <button className="py-2 px-4 rounded-lg bg-red-400 font-medium">Reject</button>
+                <button className="py-2 px-4 rounded-lg bg-green-400 font-medium">Approved</button>
+            </td>
+            
+            
         </tr>
     );
 };

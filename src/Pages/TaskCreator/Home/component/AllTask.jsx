@@ -36,7 +36,7 @@ const AllTask = () => {
                         <th>Task Title</th>
                         <th>Payable Amout </th>
                         <th>Submission</th>
-                        <th>Action</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

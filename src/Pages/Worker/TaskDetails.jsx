@@ -33,7 +33,7 @@ const TaskDetails = () => {
             creator_email: data.user.email,
             creator_image: data.user.photo_url,
             current_date,
-            status:'pending'
+            status:'Pending'
         }
 
         console.log(submissionData);
