@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { useContext } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider'
@@ -7,8 +7,10 @@ import axios from 'axios';
 
 const Login = () => {
     const { signIn, loading, setLoading, signInWithGoogle } = useContext(AuthContext)
+    const location = useLocation()
+    
     const navigate = useNavigate()
-    const from = location?.state || '/'
+    const from = location?.state || '/dashboard'
     const handleSignIn = async (e) => {
         e.preventDefault()
         const form = e.target;

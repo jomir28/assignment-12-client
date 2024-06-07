@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import { ImSpinner9 } from "react-icons/im";
@@ -8,6 +8,11 @@ import { ImSpinner9 } from "react-icons/im";
 
 const Register = () => {
     const { createUser, signInWithGoogle, loading, setUser, setLoading, updateUserProfile, } = useContext(AuthContext);
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    
+    const from = location?.state || '/dashboard'
 
     const handleRegister = async (e) => {
         e.preventDefault()
@@ -54,6 +59,7 @@ const Register = () => {
             }
 
             const res = await axios.put('http://localhost:5000/user', user)
+            navigate(from, { replace: true })
             console.log(res.data);
 
         } catch (error) {
