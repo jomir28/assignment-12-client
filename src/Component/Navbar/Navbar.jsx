@@ -30,6 +30,15 @@ const Navbar = () => {
                                 !user && <>
                                     <NavLink className={({ isActive }) => isActive ? ' text-sm font-medium text-[#0aa9be] underline rounded' : 'text-sm hover:text-rose-500 '} to={'/login'}>Login</NavLink>
                                     <NavLink className={({ isActive }) => isActive ? ' text-sm font-medium text-[#0aa9be] underline rounded' : 'text-sm hover:text-rose-500 '} to={'/register'}>Register</NavLink>
+                                    
+                                        <a
+                                            className="text-[#000000DE] "
+                                            href="https://youtu.be/8zy3GpMijKs?si=gGyIaEy-MA6S2DUB"
+                                            target="_blank"
+                                        >
+                                            Watch Demo
+                                        </a>
+                                  
                                 </>
                             }
                             
