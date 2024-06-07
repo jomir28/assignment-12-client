@@ -18,6 +18,9 @@ import ManageUsers from "../Pages/Admin/ManageUsers";
 import ManageTask from "../Pages/Admin/ManageTask";
 import UpdateTask from "../Pages/TaskCreator/UpdateTask";
 import TaskDetails from "../Pages/Worker/TaskDetails";
+import AdminRoute from "./AdminRoute";
+import TaskCreatorRoute from "./TaskCreatorRoute";
+import WorkerRoute from "./WorkerRoute";
 
 export const router = createBrowserRouter([
     {
@@ -38,67 +41,91 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/user-profile',
-                element: <PrivateRoute><Profile></Profile></PrivateRoute>
+                element: <PrivateRoute>
+                    <Profile></Profile>
+                </PrivateRoute>
             },
         ]
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 index: true,
-                element: <DashboardHome></DashboardHome>
+                element: <PrivateRoute><DashboardHome></DashboardHome></PrivateRoute>
             },
+
+            // for worker
             
             {
                 path:'/dashboard/task-list',
-                element: <WorkerTaskList></WorkerTaskList>
+                element: <WorkerRoute>
+                    <PrivateRoute><WorkerTaskList></WorkerTaskList></PrivateRoute>
+                </WorkerRoute>
             },
             {
                 path:'/dashboard/my-submission',
-                element: <WorkerSubmission></WorkerSubmission>
+                element: <WorkerRoute>
+                    <PrivateRoute><WorkerSubmission></WorkerSubmission></PrivateRoute>
+                </WorkerRoute>
             },
             {
                 path:'/dashboard/withdrawals',
-                element: <WorkerWithdrawals></WorkerWithdrawals>
+                element: <WorkerRoute>
+                    <PrivateRoute><WorkerWithdrawals></WorkerWithdrawals></PrivateRoute>
+                </WorkerRoute>
             },
             {
                 path: '/dashboard/task-details/:id',
-                element: <TaskDetails></TaskDetails>,
+                element: <WorkerRoute>
+                    <PrivateRoute><TaskDetails></TaskDetails></PrivateRoute>
+                </WorkerRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
             },
             // for task creator
             {
                 path:'/dashboard/add-task',
-                element: <AddNewTask></AddNewTask>
+                element: <TaskCreatorRoute>
+                    <PrivateRoute><AddNewTask></AddNewTask></PrivateRoute>
+                </TaskCreatorRoute>
             },
             {
                 path:'/dashboard/my-task',
-                element: <MyTask></MyTask>
+                element: <TaskCreatorRoute>
+                    <PrivateRoute><MyTask></MyTask></PrivateRoute>
+                </TaskCreatorRoute>
             },
             {
                 path:'/dashboard/purchase-coin',
-                element: <PurchaseCoin></PurchaseCoin>
+                element: <TaskCreatorRoute>
+                    <PrivateRoute><PurchaseCoin></PurchaseCoin></PrivateRoute>
+                </TaskCreatorRoute>
             },
             {
                 path:'/dashboard/payment-history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <TaskCreatorRoute>
+                    <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
+                </TaskCreatorRoute>
             },
             {
                 path: '/dashboard/update-task/:id',
-                element: <UpdateTask></UpdateTask>,
+                element: <TaskCreatorRoute>
+                    <PrivateRoute><UpdateTask></UpdateTask></PrivateRoute>
+                </TaskCreatorRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
             },
 
             // for admin
             {
                 path: '/dashboard/manage-users',
-                element: <ManageUsers></ManageUsers>
+                element: <AdminRoute>
+                    <PrivateRoute><ManageUsers></ManageUsers></PrivateRoute>
+                </AdminRoute>
             },
             {
                 path: '/dashboard/manage-task',
-                element: <ManageTask></ManageTask>
+                element: <AdminRoute><PrivateRoute><ManageTask></ManageTask></PrivateRoute></AdminRoute>
             },
             
         ]

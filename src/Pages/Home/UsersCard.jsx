@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Loading from "../../Component/Loading";
 
