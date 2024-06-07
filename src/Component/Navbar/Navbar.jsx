@@ -58,7 +58,16 @@ const Navbar = () => {
                             !user && <>
                                 <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5  rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/login'}>Login</NavLink>
                                 <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5  rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/register'}>Register</NavLink>
-                                <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5  rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/watch-demo'}>Watch Demo</NavLink>
+                                {/* <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5  rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/watch-demo'}>Watch Demo</NavLink> */}
+                                <button>
+                                    <a
+                                        className="text-[#000000DE] "
+                                        href="https://youtu.be/8zy3GpMijKs?si=gGyIaEy-MA6S2DUB"
+                                        target="_blank"
+                                    >
+                                        Watch Demo
+                                    </a>
+                                </button>
                                 {
                             user && <div className="flex gap-3 items-center">
                                 <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5  rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/dashboard'}>Dashboard</NavLink>
