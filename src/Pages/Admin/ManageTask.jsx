@@ -7,7 +7,7 @@ import ManageTaskRow from "./ManageTaskRow";
 const ManageTask = () => {
     const axiosSecure = useAxiosSecure()
     
-    const { data:adminTask,isLoading } = useQuery({
+    const { data:adminTask,isLoading,refetch } = useQuery({
         queryKey: ['admin-task'],
         queryFn: async () => {
             const { data } = await axiosSecure.get('/admin-task')
@@ -21,7 +21,7 @@ const ManageTask = () => {
 
     // console.log(adminTask);
     return (
-        <div>
+        <div className="my-14">
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -39,7 +39,7 @@ const ManageTask = () => {
                     <tbody>
                        
                         {
-                            adminTask.map(task=><ManageTaskRow key={task._id} task={task}></ManageTaskRow>)
+                            adminTask.map(task=><ManageTaskRow key={task._id} task={task} refetch={refetch}></ManageTaskRow>)
                        }
                         
                     </tbody>

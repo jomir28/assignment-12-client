@@ -2,10 +2,43 @@
 
 import { FaRegEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
-const ManageTaskRow = ({ task }) => {
+const ManageTaskRow = ({ task,refetch }) => {
+    const axiosPublic = useAxiosPublic()
+
     console.log(task);
     const modalId = `modal_${task._id}`;
+
+    const handleDeleteTask = (id) => {
+        console.log(id);
+        
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                const data = await axiosPublic.delete(`/admin-task-delete/${task._id}`)
+                if (data.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    refetch()
+                }
+               
+            }
+        });
+        
+    }
+
     return (
         <tr>
             <td>{task.task_title}</td>
@@ -28,8 +61,8 @@ const ManageTaskRow = ({ task }) => {
                     </div>
                 </dialog>
             </td>
-            <td>
-                <MdDelete className="text-xl" />
+            <td onClick={()=>handleDeleteTask(task._id)}>
+                <MdDelete className="text-xl hover:text-rose-500 transition-all duration-200" />
 
             </td>
            
