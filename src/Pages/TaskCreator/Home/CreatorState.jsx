@@ -55,7 +55,7 @@ const CreatorState = () => {
                             <dl>
                                 <dt className="text-sm leading-5 font-medium  truncate text-gray-400"> Total Payment
                                 </dt>
-                                <dd className="mt-1 text-3xl leading-9 font-semibold  text-indigo-400">{state.totalPayableAmount}
+                                <dd className="mt-1 text-3xl leading-9 font-semibold  text-indigo-400">{state.total}
                                 </dd>
                             </dl>
                         </div>

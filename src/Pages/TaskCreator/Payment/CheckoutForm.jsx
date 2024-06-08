@@ -115,6 +115,7 @@ const CheckoutForm = ({ payment }) => {
                 ...payment,
                 paymentId: payment._id,
                 transactionId: paymentIntent.id,
+                email: user?.email,
                 date: new Date(),
                 time: Date.now()
 
