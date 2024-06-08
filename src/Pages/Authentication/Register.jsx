@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -9,9 +9,10 @@ import { ImSpinner9 } from "react-icons/im";
 const Register = () => {
     const { createUser, signInWithGoogle, loading, setUser, setLoading, updateUserProfile, } = useContext(AuthContext);
     const location = useLocation()
+    const [error, setError] = useState('')
     const navigate = useNavigate()
 
-    
+
     const from = location?.state || '/dashboard'
 
     const handleRegister = async (e) => {
@@ -65,6 +66,7 @@ const Register = () => {
         } catch (error) {
             console.log(error.message);
             console.log(error);
+            setError(error.message)
 
             setLoading(false)
         }
@@ -87,6 +89,7 @@ const Register = () => {
             const res = await axios.put('http://localhost:5000/user', user)
             console.log(res.data);
             console.log(user);
+            setError('')
 
 
         } catch (error) {
@@ -173,7 +176,9 @@ const Register = () => {
 
 
                     </div>
-
+                    {
+                        error && <p className="text-red-500">{error}</p>
+                    }
                     <div>
                         <button
                             disabled={loading}
