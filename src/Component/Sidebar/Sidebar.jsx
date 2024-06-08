@@ -42,7 +42,7 @@ const Sidebar = () => {
             {/* Small Screen Navbar */}
             <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
                 <div>
-                    <div className='block cursor-pointer p-4 font-medium font-bold'>
+                    <div className='block  cursor-pointer p-4  font-bold'>
                         <Link className='flex items-center gap-1' to='/'>
                             
                             <img
@@ -72,8 +72,8 @@ const Sidebar = () => {
             >
                 <div>
                     <div>
-                        <div className='w-full hidden md:flex font-medium px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-50 mx-auto'>
-                            <Link className='flex items-center gap-1' to='/'>
+                        <Link to={'/'} className='w-full border-b-2 border-l-4 border-rose-500 hidden md:flex font-medium px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-50 mx-auto'>
+                            <div className='flex items-center gap-1' >
                                 <img
                                     className='hidden md:block'
                                     src={microEarn}
@@ -83,8 +83,8 @@ const Sidebar = () => {
                                     
                                 />
                                 Micro Earn
-                            </Link>
-                        </div>
+                            </div>
+                        </Link>
                     </div>
 
                     {/* Nav Items */}
@@ -97,7 +97,7 @@ const Sidebar = () => {
                                 to='/dashboard'
                                 end
                                 className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  border-l-2 border-black text-gray-700' : 'text-gray-600'
                                     }`
                                 }
                             >

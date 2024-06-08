@@ -22,7 +22,7 @@ const MyTask = () => {
     const { data: tableData, isLoading, refetch } = useQuery({
         queryKey: ['my-task', user?.email],
         queryFn: async () => {
-            // const { data } = await axios.get(`http://localhost:5000/all-task/${user?.email}`)
+            
             const { data } = await axiosSecure(`/all-task/${user?.email}`)
             return data;
         }
