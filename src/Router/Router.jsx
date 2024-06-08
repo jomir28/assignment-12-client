@@ -21,6 +21,7 @@ import TaskDetails from "../Pages/Worker/TaskDetails";
 import AdminRoute from "./AdminRoute";
 import TaskCreatorRoute from "./TaskCreatorRoute";
 import WorkerRoute from "./WorkerRoute";
+import Payment from "../Pages/TaskCreator/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element:<Home></Home>
+                element: <Home></Home>
             },
             {
                 path: '/login',
@@ -57,21 +58,21 @@ export const router = createBrowserRouter([
             },
 
             // for worker
-            
+
             {
-                path:'/dashboard/task-list',
+                path: '/dashboard/task-list',
                 element: <WorkerRoute>
                     <PrivateRoute><WorkerTaskList></WorkerTaskList></PrivateRoute>
                 </WorkerRoute>
             },
             {
-                path:'/dashboard/my-submission',
+                path: '/dashboard/my-submission',
                 element: <WorkerRoute>
                     <PrivateRoute><WorkerSubmission></WorkerSubmission></PrivateRoute>
                 </WorkerRoute>
             },
             {
-                path:'/dashboard/withdrawals',
+                path: '/dashboard/withdrawals',
                 element: <WorkerRoute>
                     <PrivateRoute><WorkerWithdrawals></WorkerWithdrawals></PrivateRoute>
                 </WorkerRoute>
@@ -85,25 +86,25 @@ export const router = createBrowserRouter([
             },
             // for task creator
             {
-                path:'/dashboard/add-task',
+                path: '/dashboard/add-task',
                 element: <TaskCreatorRoute>
                     <PrivateRoute><AddNewTask></AddNewTask></PrivateRoute>
                 </TaskCreatorRoute>
             },
             {
-                path:'/dashboard/my-task',
+                path: '/dashboard/my-task',
                 element: <TaskCreatorRoute>
                     <PrivateRoute><MyTask></MyTask></PrivateRoute>
                 </TaskCreatorRoute>
             },
             {
-                path:'/dashboard/purchase-coin',
+                path: '/dashboard/purchase-coin',
                 element: <TaskCreatorRoute>
                     <PrivateRoute><PurchaseCoin></PurchaseCoin></PrivateRoute>
                 </TaskCreatorRoute>
             },
             {
-                path:'/dashboard/payment-history',
+                path: '/dashboard/payment-history',
                 element: <TaskCreatorRoute>
                     <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
                 </TaskCreatorRoute>
@@ -115,7 +116,10 @@ export const router = createBrowserRouter([
                 </TaskCreatorRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
             },
-
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>
+            },
             // for admin
             {
                 path: '/dashboard/manage-users',
@@ -127,8 +131,8 @@ export const router = createBrowserRouter([
                 path: '/dashboard/manage-task',
                 element: <AdminRoute><PrivateRoute><ManageTask></ManageTask></PrivateRoute></AdminRoute>
             },
-            
+
         ]
     }
-    
+
 ]);
