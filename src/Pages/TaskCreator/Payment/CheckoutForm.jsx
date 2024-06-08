@@ -11,11 +11,16 @@ import { useContext, useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { ImSpinner9 } from 'react-icons/im';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ payment }) => {
     // console.log(payment.dollars);
     const axiosSecure = useAxiosSecure()
     const { user } = useContext(AuthContext)
+    const queryClient = useQueryClient()
+    const navigate = useNavigate()
+
 
     const stripe = useStripe();
     const elements = useElements();
@@ -108,7 +113,7 @@ const CheckoutForm = ({ payment }) => {
             //no.1 create payment info obj
             const paymentInfo = {
                 ...payment,
-                paymentId:payment._id,
+                paymentId: payment._id,
                 transactionId: paymentIntent.id,
                 date: new Date(),
                 time: Date.now()
@@ -118,14 +123,23 @@ const CheckoutForm = ({ payment }) => {
             console.log(paymentInfo);
             try {
                 //no.2 save payment info in booking collection db
-                await axiosSecure.post('/confirm-payment', paymentInfo)
+                const res = await axiosSecure.patch(`/payment-success/coin-update/${user?.email}`, { coins: payment.coins })
+                console.log(res.data.modifiedCount);
+                if (res.data.modifiedCount) {
+                    const res1 = await axiosSecure.post('/confirm-payment', paymentInfo)
+                    queryClient.invalidateQueries(['data'])
+                    navigate('/dashboard/payment-history')
+                    console.log(res1);
+                    
+                }
+
 
             } catch (error) {
                 console.log(error);
             }
-            
+
         }
-        
+
         setProcessing(false)
 
     };
