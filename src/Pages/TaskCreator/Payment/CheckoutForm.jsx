@@ -15,7 +15,7 @@ import { ImSpinner9 } from 'react-icons/im';
 const CheckoutForm = ({ payment }) => {
     // console.log(payment.dollars);
     const axiosSecure = useAxiosSecure()
-    const{user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const stripe = useStripe();
     const elements = useElements();
@@ -35,18 +35,18 @@ const CheckoutForm = ({ payment }) => {
 
 
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [payment?.dollars])
 
     //get client secret
 
     const getClientSecret = async (price) => {
         const { data } = await axiosSecure.post('/create-payment-intent', price)
-        console.log('client secret from server',data);
+        console.log('client secret from server', data);
         setClientSecret(data.clientSecret)
     }
 
-  
+
 
 
     const handleSubmit = async (event) => {
@@ -86,7 +86,7 @@ const CheckoutForm = ({ payment }) => {
         }
 
         //confirm payment
-        const {error:confirmError,paymentIntent} = await stripe.confirmCardPayment(clientSecret, {
+        const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
                 billing_details: {
@@ -106,23 +106,27 @@ const CheckoutForm = ({ payment }) => {
         if (paymentIntent.status === 'succeeded') {
             console.log(paymentIntent);
             //no.1 create payment info obj
-            const paymentInfo= {
+            const paymentInfo = {
                 ...payment,
+                paymentId:payment._id,
                 transactionId: paymentIntent.id,
                 date: new Date(),
-                time:Date.now()
-                
+                time: Date.now()
+
             }
+            delete paymentInfo._id
             console.log(paymentInfo);
-            setProcessing(false)
+            try {
+                //no.2 save payment info in booking collection db
+                await axiosSecure.post('/confirm-payment', paymentInfo)
 
-
-            //no.2 save payment info in booking collection db
-
-
+            } catch (error) {
+                console.log(error);
+            }
             
         }
-
+        
+        setProcessing(false)
 
     };
 
@@ -149,14 +153,14 @@ const CheckoutForm = ({ payment }) => {
                 <button className='btn btn-primary' type="submit" disabled={!stripe || !clientSecret || processing}>
                     {
                         processing ? <ImSpinner9 size={24} className='animate-spin m-auto' /> :
-                    `Pay ${payment.dollars}$`
-                   }
+                            `Pay ${payment.dollars}$`
+                    }
                 </button>
             </form>
             {
                 cardError && <p className='text-red-500 mt-2 ml-1'>{cardError}</p>
             }
-        
+
         </>
     );
 };
