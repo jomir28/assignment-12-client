@@ -1,5 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Loading from "../../../Component/Loading";
+import TableRow from "./TableRow";
 
 const WithdrawReq = () => {
+    const axiosSecure = useAxiosSecure()
+    
+    const { data:withdraw_request,isLoading,refetch } = useQuery({
+        queryKey: ['withdraw-request'],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get('/admin-home-request')
+            return data
+        }
+    })
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+    console.log(withdraw_request);
+
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -17,32 +37,9 @@ const WithdrawReq = () => {
                 </thead>
                 <tbody>
                     {/* row 1 */}
-                    <tr>
-                        <td>
-                            <div className="flex items-center gap-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-bold">Hart Hagerty</div>
-                                    <div className="text-sm opacity-50">United States</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            50
-                        </td>
-                        <td>Purple</td>
-                        <td>Purple</td>
-                        <td>Purple</td>
-                        <td>Purple</td>
-                        <th>
-                            <button className="btn btn-ghost btn-xs">details</button>
-                        </th>
-                        
-                    </tr>
+                    {
+                        withdraw_request.map(withdraw =><TableRow key={withdraw._id} withdraw={withdraw} refetch={refetch}></TableRow>)
+                    }
                    
                 </tbody>
 

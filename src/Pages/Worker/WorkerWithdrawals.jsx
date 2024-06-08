@@ -67,7 +67,7 @@ const WorkerWithdrawals = () => {
             coin_to_withdraw: parseInt(first),
             withdraw_amount: parseInt(second),
             payment_method: paymentMethod,
-            withdraw_number: parseInt(withdrawNumber),
+            withdraw_number: withdrawNumber,
             worker_email: data.email,
             worker_name: data.name,
             worker_image: data.image,
