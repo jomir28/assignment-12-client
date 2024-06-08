@@ -2,11 +2,14 @@ import { useContext } from "react"
 import { AuthContext } from "../Providers/AuthProvider"
 import { RiCoinsFill } from "react-icons/ri"
 import useRole from "../hooks/useRole"
+import { Link } from "react-router-dom"
+import useUser from "../hooks/useUser"
 
 
 const Profile = () => {
     const { user } = useContext(AuthContext)
     const [role] = useRole()
+    const[data]=useUser()
     return (
         <div className='flex justify-center items-center h-screen'>
             <div className='bg-white shadow-lg rounded-2xl w-3/5'>
@@ -29,7 +32,7 @@ const Profile = () => {
                         {role}
                     </p>
                     <p className='mt-2 flex gap-2 items-center text-xl font-medium text-gray-800 '>
-                        Available Coins: 100 <RiCoinsFill className="text-orange-400" />
+                        Available Coins: {data.coins} 
 
                     </p>
                     <div className='w-full p-2 mt-4 rounded-lg'>
@@ -47,14 +50,14 @@ const Profile = () => {
                                 </span>
                             </p>
 
-                            <div className="mt-5 md:mt-0">
-                                <button className='bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1'>
+                            {/* <div className="mt-5 md:mt-0">
+                                <Link className='bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1'>
                                     Update Profile
-                                </button>
+                                </Link>
                                 <button className='bg-[#F43F5E] px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053]'>
                                     Change Password
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

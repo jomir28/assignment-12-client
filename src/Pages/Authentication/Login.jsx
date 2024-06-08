@@ -28,6 +28,7 @@ const Login = () => {
         signIn(email, password)
             .then(res => {
                 console.log(res);
+                navigate(from, { replace: true })
                 setLoading(false)
             })
             .catch(err => {

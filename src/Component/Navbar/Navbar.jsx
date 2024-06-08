@@ -44,13 +44,13 @@ const Navbar = () => {
                             
                             {
                                 user && <div className="flex gap-3 items-center">
-                                    <NavLink className={({ isActive }) => isActive ? 'border-2  font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5  rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/dashboard'}>Dashboard</NavLink>
+                                    <NavLink className={({ isActive }) => isActive ? 'border-2  font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5 border2 rounded-xl hover:bg-cyan-100 hover:text-blue-500 border-2 '} to={'/dashboard'}>Dashboard</NavLink>
 
                                     <div className="dropdown dropdown-end z-50">
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                             <div className="indicator">
                                                 <img className="w-8 h-8" src={coin} alt="" />
-                                                <span className="badge badge-sm indicator-item">{data?.coins}</span>
+                                                <span className="badge badge-sm border-pink-600 indicator-item">{data?.coins}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@ const Navbar = () => {
                             !user && <>
                                 <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5 border-2 rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/login'}>Login</NavLink>
                                 <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5 border-2 rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/register'}>Register</NavLink>
-                                {/* <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5  rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/watch-demo'}>Watch Demo</NavLink> */}
+                                
                                 <button>
                                     <a
                                         className="py-3 px-5 border-2 rounded-xl hover:bg-cyan-100 hover:text-blue-500"
@@ -97,13 +97,13 @@ const Navbar = () => {
 
                         {
                             user && <div className="flex gap-3 items-center">
-                                <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5' : 'py-3 px-5  rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/dashboard'}>Dashboard</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? 'border-2 font-semibold  text-[#10be0a] border-[#a3da5aee] py-3 rounded-xl px-5 ' : 'py-3 px-5 border-2 rounded-xl hover:bg-cyan-100 hover:text-blue-500 '} to={'/dashboard'}>Dashboard</NavLink>
 
                                 <div className="dropdown dropdown-end z-50">
                                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                         <div className="indicator">
                                             <img className="w-8 h-8" src={coin} alt="" />
-                                            <span className="badge badge-sm indicator-item">{data?.coins}</span>
+                                            <span className="badge border border-pink-600 badge-sm indicator-item">{data?.coins}</span>
                                         </div>
                                     </div>
                                 </div>
