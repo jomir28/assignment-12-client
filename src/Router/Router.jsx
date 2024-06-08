@@ -22,11 +22,13 @@ import AdminRoute from "./AdminRoute";
 import TaskCreatorRoute from "./TaskCreatorRoute";
 import WorkerRoute from "./WorkerRoute";
 import Payment from "../Pages/TaskCreator/Payment/Payment";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -51,6 +53,7 @@ export const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 index: true,
