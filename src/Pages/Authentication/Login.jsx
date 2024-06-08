@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider'
 import { ImSpinner9 } from "react-icons/im";
 import axios from 'axios';
@@ -8,6 +8,7 @@ import axios from 'axios';
 const Login = () => {
     const { signIn, loading, setLoading, signInWithGoogle } = useContext(AuthContext)
     const location = useLocation()
+    const[error,setError] = useState('')
     
     const navigate = useNavigate()
     const from = location?.state || '/dashboard'
@@ -16,13 +17,24 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        try {
-            await signIn(email, password)
-            navigate(from,{replace:true})
-        } catch (error) {
-            console.log(error.message);
-            setLoading(false)
-        }
+        // try {
+        //     await signIn(email, password)
+        //     navigate(from,{replace:true})
+        // } catch (error) {
+        //     console.log(error.message);
+        //     setLoading(false)
+        // }
+
+        signIn(email, password)
+            .then(res => {
+                console.log(res);
+                setLoading(false)
+            })
+            .catch(err => {
+                console.log(err.message);
+                setError(err.message)
+                setLoading(false)
+        })
 
     }
 
@@ -96,7 +108,7 @@ const Login = () => {
                         </div>
                     </div>
 
-
+                    {error && <p className='text-red-500'>{error}</p>}
 
                     <div>
                         <button
@@ -110,11 +122,11 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
-                <div className='space-y-1'>
+                {/* <div className='space-y-1'>
                     <button className='text-xs hover:underline hover:text-rose-500 text-gray-400'>
                         Forgot password?
                     </button>
-                </div>
+                </div> */}
                 <div className='flex items-center pt-4 space-x-1'>
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                     <p className='px-3 text-sm dark:text-gray-400'>
