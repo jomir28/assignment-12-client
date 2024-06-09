@@ -6,12 +6,14 @@ import axios from "axios";
 import useUser from "../../hooks/useUser";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
 const AddNewTask = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
     // eslint-disable-next-line no-unused-vars
     const [data, isLoading, refetch] = useUser()
+    const navigate = useNavigate()
     // console.log(data?.coins);
 
     const [deadline, setStartDate] = useState(new Date());
@@ -76,6 +78,7 @@ const AddNewTask = () => {
                     timer: 1500
                 });
                 refetch()
+                navigate('/dashboard/my-task')
             }
             // console.log(result.data.insertedId);
         } catch (error) {
