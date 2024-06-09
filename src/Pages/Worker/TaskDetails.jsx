@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import {  useLoaderData } from "react-router-dom";
+import {  useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 const TaskDetails = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
+    const navigate =useNavigate()
 
     const data = useLoaderData()
     let current_date = Date.now();
@@ -47,6 +48,7 @@ const TaskDetails = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            navigate('/dashboard/my-submission')
         }
 
     }

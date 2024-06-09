@@ -9,6 +9,7 @@ const TaskRow = ({ task, refetch }) => {
 
     const queryClient = useQueryClient()
     const modalId = `modal_${task._id}`;
+    console.log(task);
 
    
 
@@ -56,11 +57,22 @@ const TaskRow = ({ task, refetch }) => {
                 if (data.data.modifiedCount) {
                    
                     const data = await axiosSecure.patch(`/update-user-coin/${task.worker_email}`, { coins: task.payable_amount })
-                    console.log(data.data,'form coins update');
+                    const notification= {
+                        message: `you have earned ${task.payable_amount} from ${task.creator_name} for completing ${task.task_title}`,
+                        status:'unread',
+                        toEmail: task.worker_email,
+                        date: new Date(),
+                        time:Date.now()
+                    }
+                    // console.log(notification);
+                    const notifi = await axiosSecure.post('/notification', notification)
+                    console.log(notifi);
+
+                    console.log(data.data.modifiedCount,'form coins update');
 
                     Swal.fire({
-                        title: "Rejected!",
-                        text: "Rejected Successfully.",
+                        title: "Approve!",
+                        text: "Approve Successfully.",
                         icon: "success"
                     });
                     refetch()
