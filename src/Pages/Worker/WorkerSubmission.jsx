@@ -13,7 +13,7 @@ const WorkerSubmission = () => {
     const { data: submissionData,isLoading } = useQuery({
         queryKey: ['submission-data', user?.email],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`work-submission/${user?.email}`)
+            const { data } = await axiosSecure.get(`/work-submission/${user?.email}`)
             return data
         }
     })

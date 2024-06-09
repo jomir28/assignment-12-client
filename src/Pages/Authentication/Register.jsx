@@ -59,7 +59,7 @@ const Register = () => {
                 coins: parseInt(coins)
             }
 
-            const res = await axios.put('http://localhost:5000/user', user)
+            const res = await axios.put('https://b9-a12-server-swart.vercel.app/user', user)
             navigate(from, { replace: true })
             console.log(res.data);
 
@@ -86,7 +86,7 @@ const Register = () => {
                 coins: parseInt(10)
 
             }
-            const res = await axios.put('http://localhost:5000/user', user)
+            const res = await axios.put('https://b9-a12-server-swart.vercel.app/user', user)
             console.log(res.data);
             console.log(user);
             setError('')

@@ -6,7 +6,7 @@ const UpdateTask = () => {
     const data = useLoaderData()
     console.log(data);
 
-    const handleUpdataTask = async(e) => {
+    const handleUpdataTask = async (e) => {
         e.preventDefault()
         const form = e.target;
         const task_title = form.task_title.value;
@@ -18,7 +18,7 @@ const UpdateTask = () => {
             task_detail,
             submission_info
         }
-        const result = await axios.patch(`http://localhost:5000/my-task/${data._id}`, updateData)
+        const result = await axios.patch(`https://b9-a12-server-swart.vercel.app/my-task/${data._id}`, updateData)
         if (result.data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",
@@ -28,7 +28,7 @@ const UpdateTask = () => {
                 timer: 1500
             });
         }
-       
+
     }
 
     return (
@@ -43,7 +43,7 @@ const UpdateTask = () => {
                         <label htmlFor="task_detail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task Detail</label>
                         <input defaultValue={data.task_detail} name="task_detail" type="text" id="task_detail" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=" Your Task Detail" required />
                     </div>
-                    
+
 
                     <div>
                         <label htmlFor="submission_info" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Submission Info</label>
@@ -51,7 +51,7 @@ const UpdateTask = () => {
                     </div>
                 </div>
 
-                
+
                 <input className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit" value="Update Task" />
 
             </form>

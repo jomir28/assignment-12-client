@@ -8,8 +8,8 @@ import axios from 'axios';
 const Login = () => {
     const { signIn, loading, setLoading, signInWithGoogle } = useContext(AuthContext)
     const location = useLocation()
-    const[error,setError] = useState('')
-    
+    const [error, setError] = useState('')
+
     const navigate = useNavigate()
     const from = location?.state || '/dashboard'
     const handleSignIn = async (e) => {
@@ -35,7 +35,7 @@ const Login = () => {
                 console.log(err.message);
                 setError(err.message)
                 setLoading(false)
-        })
+            })
 
     }
 
@@ -52,7 +52,7 @@ const Login = () => {
                 coins: parseInt(10)
 
             }
-            const res = await axios.put('http://localhost:5000/user', user)
+            const res = await axios.put('https://b9-a12-server-swart.vercel.app/user', user)
             console.log(res.data);
             console.log(user);
 

@@ -11,7 +11,7 @@ const AddNewTask = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
     // eslint-disable-next-line no-unused-vars
-    const [data, isLoading,refetch] = useUser()
+    const [data, isLoading, refetch] = useUser()
     // console.log(data?.coins);
 
     const [deadline, setStartDate] = useState(new Date());
@@ -61,11 +61,11 @@ const AddNewTask = () => {
                     post_time: Date.now()
                 }
             }
-            // const result = await axios.post('http://localhost:5000/add-task', task)
-            const result = await axiosSecure.post('/add-task',task)
+            // const result = await axios.post('https://b9-a12-server-swart.vercel.app/add-task', task)
+            const result = await axiosSecure.post('/add-task', task)
             if (result.data.insertedId) {
 
-                // const result = await axios.patch(`http://localhost:5000/update-coin/${user?.email}`, { value: task_quantity * payable_amount })
+                // const result = await axios.patch(`https://b9-a12-server-swart.vercel.app/update-coin/${user?.email}`, { value: task_quantity * payable_amount })
                 const result = await axiosSecure.patch(`/decrease-coin/${user?.email}`, { value: task_quantity * payable_amount })
                 console.log(result);
                 Swal.fire({

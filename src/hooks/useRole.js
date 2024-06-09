@@ -5,21 +5,21 @@ import axios from "axios";
 
 
 const useRole = () => {
-    const { user,loading } = useContext(AuthContext)
-    
-//fetch user info using logged in user
+    const { user, loading } = useContext(AuthContext)
+
+    //fetch user info using logged in user
     // TODO:Do it using axios secure
-    const { data: role,isLoading } = useQuery({
+    const { data: role, isLoading } = useQuery({
         queryKey: ['role', user?.email],
-        enabled:!loading && !!user?.email,
+        enabled: !loading && !!user?.email,
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/user/${user?.email}`)
+            const { data } = await axios.get(`https://b9-a12-server-swart.vercel.app/user/${user?.email}`)
             return data.role
         }
     })
-    
 
-    return [role,isLoading]
+
+    return [role, isLoading]
 };
 
 export default useRole;

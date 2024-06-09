@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement:<ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        errorElement:<ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 index: true,
@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
                 element: <WorkerRoute>
                     <PrivateRoute><TaskDetails></TaskDetails></PrivateRoute>
                 </WorkerRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
+                loader: ({ params }) => fetch(`https://b9-a12-server-swart.vercel.app/my-task/${params.id}`)
             },
             // for task creator
             {
@@ -117,7 +117,7 @@ export const router = createBrowserRouter([
                 element: <TaskCreatorRoute>
                     <PrivateRoute><UpdateTask></UpdateTask></PrivateRoute>
                 </TaskCreatorRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/my-task/${params.id}`)
+                loader: ({ params }) => fetch(`https://b9-a12-server-swart.vercel.app/my-task/${params.id}`)
             },
             {
                 path: '/dashboard/payment/:id',
