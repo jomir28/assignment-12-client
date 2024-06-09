@@ -21,7 +21,7 @@ const DashboardLayout = () => {
         }
 
     })
-    const { data: count} = useQuery({
+    const { data: count,isLoading:loadingCount} = useQuery({
         queryKey: ['count'],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/notification-count/new/${user?.email}`)
@@ -37,7 +37,7 @@ const DashboardLayout = () => {
     }
 
    
-    if (isLoading) {
+    if (isLoading || loadingCount) {
         return <Loading></Loading>
     }
     

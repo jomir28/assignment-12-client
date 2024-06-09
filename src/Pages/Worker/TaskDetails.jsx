@@ -11,6 +11,7 @@ const TaskDetails = () => {
     const navigate =useNavigate()
 
     const data = useLoaderData()
+    console.log(data);
     let current_date = Date.now();
     
 //    let currentDate = new Date(currentTimeMillis).toLocaleDateString();
@@ -41,6 +42,19 @@ const TaskDetails = () => {
         const result = await axiosSecure.post('/worker-submission', submissionData)
         console.log(result.data);
         if (result.data.insertedId) {
+
+            const notification = {
+                message: `you have message from ${user?.displayName} for completing ${data.task_title}`,
+                status: 'unread',
+                toEmail: data.user.email,
+                date: new Date(),
+                time: Date.now()
+            }
+            const notifi = await axiosSecure.post('/notification', notification)
+            console.log(notifi);
+            console.log(notification);
+
+
             Swal.fire({
                 position: "top-end",
                 icon: "success",
