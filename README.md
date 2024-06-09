@@ -28,11 +28,6 @@ This repository contains the codebase for a Micro Tasking and Earning Platform d
 - **Notification System:** Implemented a notification system for task and user-related operations, enhancing user engagement and communication.
 - **Pagination and Image Upload:** Implemented pagination for task submissions and integrated image uploading using imageBB for user registration and task creation.
 
-## Additional Features (Optional)
-- **Automated Email Notifications:** Set up automated email notifications for various actions, enhancing user communication.
-- **Advanced Search and Filter:** Implemented comprehensive search and filter functionality for tasks, improving task discovery and selection.
-- **Report System:** Implemented a reporting system for invalid submissions, enabling Admin to take proper action.
-
 ## Setup Instructions
 1. Clone the repository: `git clone [repository_url]`
 2. Install dependencies: `npm install`
