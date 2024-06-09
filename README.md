@@ -1,8 +1,12 @@
 # Micro Tasking and Earning Platform
 
-**Admin email:** [Your Admin Email]
+**Admin email-1:** programming@hero.com
 
-**Admin password:** [Your Admin Password]
+**Admin password-1:** 123456
+
+**Admin email-2:** david.lee@gmail.com
+
+**Admin password-2:** 123456
 
 **Front-end Live Site Link:** https://b9-a12.web.app/
 
