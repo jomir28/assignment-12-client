@@ -67,13 +67,13 @@ cd Volunteer_venue-client
 npm install
 ```
 
-```
+
 ### Firebase Configuration
 
 1. Obtain Firebase credentials (API key, project ID, etc.) from the Firebase console.
 2. Create a `.env` file in the root directory of the project.
 3. Add Firebase configuration details to `.env`:
-
+```
 REACT_APP_FIREBASE_API_KEY=<your-firebase-api-key>
 REACT_APP_FIREBASE_AUTH_DOMAIN=<your-firebase-auth-domain>
 REACT_APP_FIREBASE_PROJECT_ID=<your-firebase-project-id>
