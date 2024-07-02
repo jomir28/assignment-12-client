@@ -12,7 +12,7 @@
 
 
 
-**Server Side Github Repository Link:** https://github.com/rakibgithub21/Micro_Earn-server_site/tree/main
+**Server Side Github Repository Link:** https://github.com/rakibgithub21/Micro_Earn-server_site
 
 ---
 
