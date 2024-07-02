@@ -62,8 +62,8 @@ This repository contains the codebase for a Micro Tasking and Earning Platform d
 ### Prerequisites
 
 ```bash
-git clone https://github.com/rakibgithub21/Volunteer_venue-client.git
-cd Volunteer_venue-client
+git clone https://github.com/rakibgithub21/Micro_Earn-client_site
+cd Micro_Earn-client_site
 npm install
 ```
 
