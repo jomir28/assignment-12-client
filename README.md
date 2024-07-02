@@ -41,13 +41,6 @@ This repository contains the codebase for a Micro Tasking and Earning Platform d
 19. **Analytics and Reporting:** Admin can view platform analytics, including user activity, task completion rates, and financial transactions.
 20. **Demo Video Integration:** A demo video link to help new users understand the platform's functionality.
 
-## Setup Instructions
-1. Clone the repository: `git clone [repository_url]`
-2. Install dependencies: `npm install`
-3. Set up environment variables for Firebase config keys and MongoDB credentials.
-4. Start the server: `npm start`
-5. Access the application via the provided front-end live site link.
-
 ## Technologies Used
 - MongoDB
 - Express.js
