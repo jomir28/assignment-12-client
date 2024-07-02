@@ -10,7 +10,7 @@
 
 **Front-end Live Site Link:** https://b9-a12.web.app/
 
-**Client Side Github Repository Link:** https://github.com/programming-hero-web-course1/b9a12-client-side-rakibgithub21
+
 
 **Server Side Github Repository Link:** https://github.com/programming-hero-web-course1/b9a12-server-side-rakibgithub21
 
