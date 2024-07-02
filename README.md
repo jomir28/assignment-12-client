@@ -67,4 +67,19 @@ cd Volunteer_venue-client
 npm install
 ```
 
+```
+### Firebase Configuration
+
+1. Obtain Firebase credentials (API key, project ID, etc.) from the Firebase console.
+2. Create a `.env` file in the root directory of the project.
+3. Add Firebase configuration details to `.env`:
+
+REACT_APP_FIREBASE_API_KEY=<your-firebase-api-key>
+REACT_APP_FIREBASE_AUTH_DOMAIN=<your-firebase-auth-domain>
+REACT_APP_FIREBASE_PROJECT_ID=<your-firebase-project-id>
+REACT_APP_FIREBASE_STORAGE_BUCKET=<your-firebase-storage-bucket>
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<your-firebase-messaging-sender-id>
+REACT_APP_FIREBASE_APP_ID=<your-firebase-app-id>
+```
+
 This README provides an overview of the project, its features, setup instructions, and technologies used. For detailed documentation and codebase, please refer to the respective GitHub repositories linked above. Feel free to reach out for any queries or assistance. Thank you for your interest and contribution!
