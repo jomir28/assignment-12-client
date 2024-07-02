@@ -81,5 +81,10 @@ REACT_APP_FIREBASE_STORAGE_BUCKET=<your-firebase-storage-bucket>
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<your-firebase-messaging-sender-id>
 REACT_APP_FIREBASE_APP_ID=<your-firebase-app-id>
 ```
+## Running the Project Locally
+
+### Start the Development Server
+
+npm run dev
 
 This README provides an overview of the project, its features, setup instructions, and technologies used. For detailed documentation and codebase, please refer to the respective GitHub repositories linked above. Feel free to reach out for any queries or assistance. Thank you for your interest and contribution!
