@@ -68,7 +68,7 @@ npm install
 ```
 
 
-### Firebase Configuration
+### Setting Up Firebase, Stripe, and ImgBB Credentials
 
 1. Obtain Firebase credentials (API key, project ID, etc.) from the Firebase console.
 2. Create a `.env` file in the root directory of the project.
@@ -80,6 +80,9 @@ REACT_APP_FIREBASE_PROJECT_ID=<your-firebase-project-id>
 REACT_APP_FIREBASE_STORAGE_BUCKET=<your-firebase-storage-bucket>
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<your-firebase-messaging-sender-id>
 REACT_APP_FIREBASE_APP_ID=<your-firebase-app-id>
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your strpe key
+VITE_IMGBB_API_KEY=your image bb api key
+
 ```
 ## Running the Project Locally
 
