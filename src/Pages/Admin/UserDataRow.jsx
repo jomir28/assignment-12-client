@@ -82,7 +82,7 @@ const UserDataRow = ({ user, refetch }) => {
             <td className=""> 
                 <span className="py-1 px-2 font-medium bg-green-200 rounded-xl"> {user.role}</span>
             </td>
-            <td className="font-medium">{user.coins}</td>
+            <td className="font-medium">{user?.coins}</td>
             <td><button onClick={()=>handleDeleteUser(user._id)} className="btn hover:text-rose-400 transition-all duration-300 btn-circle"><MdDelete className="text-xl" /></button></td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <button onClick={()=>setIsOpen(true)} className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>

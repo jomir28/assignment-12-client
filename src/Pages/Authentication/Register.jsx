@@ -7,7 +7,8 @@ import { ImSpinner9 } from "react-icons/im";
 
 
 const Register = () => {
-    const { createUser, signInWithGoogle, loading, setUser, setLoading, updateUserProfile, } = useContext(AuthContext);
+    const { createUser, user, signInWithGoogle, loading, setUser, setLoading, updateUserProfile, } = useContext(AuthContext);
+    console.log(user, "register pages")
     const location = useLocation()
     const [error, setError] = useState('')
     const navigate = useNavigate()

@@ -6,7 +6,8 @@ import { ImSpinner9 } from "react-icons/im";
 import axios from 'axios';
 
 const Login = () => {
-    const { signIn, loading, setLoading, signInWithGoogle } = useContext(AuthContext)
+    const { signIn, user, loading, setLoading, signInWithGoogle } = useContext(AuthContext)
+    console.log(user, "login pages")
     const location = useLocation()
     const [error, setError] = useState('')
 

@@ -32,7 +32,7 @@ const Profile = () => {
                         {role}
                     </p>
                     <p className='mt-2 flex gap-2 items-center text-xl font-medium text-gray-800 '>
-                        Available Coins: {data.coins} 
+                        Available Coins: {data?.coins} 
 
                     </p>
                     <div className='w-full p-2 mt-4 rounded-lg'>

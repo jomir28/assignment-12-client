@@ -37,7 +37,7 @@ const TestimonialSection = () => {
                     loop={true} // Add loop property for infinite loop
                     autoplay={{ delay: 3000 }} // Add autoplay with 3 seconds delay between slides
                 >
-                    {testimonials.map((testimonial, index) => (
+                    {testimonials?.map((testimonial, index) => (
                         <SwiperSlide key={index} className="bg-white p-8 rounded-lg shadow-md">
                             <div className="flex flex-col items-center">
                                 <img
